@@ -1,12 +1,19 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+    <div class="view">
+      <router-view/>
     </div>
-    <router-view/>
   </div>
 </template>
+
+<script>
+  export default {
+      name:'root',
+  }
+</script>
+
+<style scoped>
+</style>
 
 <style lang="scss">
 #app {
@@ -15,18 +22,27 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  min-width:1150px;
+
+}
+html {
+  overflow-y: scroll;
 }
 
-#nav {
-  padding: 30px;
+:root {
+  overflow-y: auto;
+  overflow-x: hidden;
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
+}
 
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
+:root body {
+  position: absolute;
+
+}
+
+body {
+  width: 100vw;
+  overflow: hidden;
+  padding: 0px;
 }
 </style>
