@@ -1,8 +1,7 @@
 <template>
     <div  id="login">
-        <el-link @click="guestLogin">游客访问</el-link>
-        <el-col :span="7" :offset="8">
-            <div class="card_box">
+        <div v-if="isMobile">
+            <div class="card_box_mobile">
                 <el-card >
                     <div class="title">登录</div>
                     <el-form label-position="right"
@@ -26,12 +25,42 @@
                     </el-form>
                 </el-card>
             </div>
-        </el-col>
+        </div>
+        <div v-else>
+            <el-col :span="7" :offset="8">
+                <div class="card_box">
+                    <el-card >
+                        <div class="title">登录</div>
+                        <el-form label-position="right"
+                                 label-width="70px"
+                                 :model="formModel"
+                                 :rules="formRules">
+                            <el-form-item label="用户名" prop="account">
+                                <el-input v-model="formModel.userName" clearable placeholder="请输入用户名" show-password size="medium"></el-input>
+                            </el-form-item>
+                            <el-form-item label="密码" prop="account">
+                                <el-input v-model="formModel.passWord" clearable placeholder="请输入密码" show-password size="medium"></el-input>
+                            </el-form-item>
+                            <el-row>
+                                <el-col :span="6" :offset="12">
+                                    <el-button type="primary" @click="login">登录</el-button>
+                                </el-col>
+                                <el-col :span="6">
+                                    <el-button plain @click="guestLogin">游客访问</el-button>
+                                </el-col>
+                            </el-row>
+                        </el-form>
+                    </el-card>
+                </div>
+            </el-col>
+        </div>
+
     </div>
 </template>
 
 <script>
 import { login,guestLogin,fetchPermission } from '@/api/permission'
+import isMobile from '@/utils/mobile'
 export default {
     data() {
         return {
@@ -41,7 +70,8 @@ export default {
             },
             formRules:{
 
-            }
+            },
+            isMobile: isMobile,
         }
     },
     beforeCreate (){
@@ -70,15 +100,38 @@ export default {
             }).catch(e => {
                 console.log(e)
             })
-        }
+        },
     }
 }
 </script>
 
 <style lang="scss">
     #login{
-        .el-link{
-            float: left;
+        .card_box_mobile{
+            position: relative;
+            .el-card{
+                width: 350px !important;
+            }
+        }
+        .card_box_mobile::after{
+            content: "welcome";
+            position: absolute;
+            top: -39px;
+            left: 190px;
+            color: #FB4264;
+            font-size: 39px;
+            line-height: 39px;
+            text-shadow: 0px 0px 3px #F40A35;
+
+            animation: neon 3s ease infinite;
+            -moz-animation: neon 3s ease infinite;
+            /* Firefox */
+
+            -webkit-animation: neon 3s ease infinite;
+            /* Safari and Chrome */
+
+            -o-animation: neon 3s ease infinite;
+            /* Opera */
         }
         .title{
             position: relative;

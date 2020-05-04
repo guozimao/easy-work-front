@@ -10,7 +10,6 @@
                     @handleSizeChange="handleSizeChange"
                     @handleCurrentChange="handleCurrentChange"
         />
-        <router-link to="/mobile/dataQuery" class="link">移动端</router-link>
     </div>
 
 </template>
@@ -19,6 +18,7 @@
     import TopQueryFormCard from "./childComps/TopQueryFormCard";
     import DataTable from "./childComps/DataTable";
     import * as API from './api';
+    import isMobile from '@/utils/mobile'
     export default {
         name: "",
         components:{
@@ -26,7 +26,11 @@
             DataTable
         },
         mounted(){
-            this.getList();
+            if(isMobile){
+                this.$router.replace({path: '/mobile/dataQuery'})
+            }else {
+                this.getList();
+            }
         },
         data(){
           return{
