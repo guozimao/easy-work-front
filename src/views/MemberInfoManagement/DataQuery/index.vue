@@ -36,8 +36,8 @@
           return{
               queryForm: {
                   scopeDate: [
-                      API.getCurrentDate(),
-                      API.getCurrentDate(),
+                      '',
+                      '',
                   ],
                   operator: '',
                   storeName: '',
@@ -63,8 +63,8 @@
             },
             reset(){
                 this.queryForm.scopeDate = [
-                    API.getCurrentDate(),
-                    API.getCurrentDate(),
+                    '',
+                    '',
                 ];
                 this.queryForm.operator = '';
                 this.queryForm.storeName = '';

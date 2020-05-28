@@ -33,8 +33,8 @@
         data() {
             return {
                 queryForm: {
-                    startDate: API.getCurrentDate(),
-                    endDate: API.getCurrentDate(),
+                    startDate: '',
+                    endDate: '',
                     operator: '',
                     storeName: '',
                     memberName: '',
@@ -55,6 +55,8 @@
         },
         methods: {
             onSubmit(){
+              this.table.pageSize = 10;
+              this.table.pageNum = 1;
               this.getList();
             },
             handleCurrentChange(pageNum){
