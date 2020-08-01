@@ -14,7 +14,7 @@ export function memberConsumptionRackList(data) {
 
 export class QueryFrom {
     constructor(obj, page){
-        this.scopeDate = obj.scopeDate || [getCurrentDate(),getCurrentDate()];
+        this.scopeDate = obj.scopeDate || ['',''];
         this.promoters = obj.operator || '';
         this.storeName = obj.storeName || '';
         this.memberName = obj.memberName || '';
